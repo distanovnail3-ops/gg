@@ -1,0 +1,712 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>be1.ru</title>
+</head>
+<body>
+<p>&lt;!DOCTYPE html&gt;<br />
+&lt;html lang=&quot;ru&quot;&gt;<br />
+&lt;head&gt;<br />
+&nbsp; &lt;meta charset=&quot;UTF-8&quot; /&gt;<br />
+&nbsp; &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;<br />
+&nbsp; &lt;title&gt;Тренажёр ударений&lt;/title&gt;<br />
+&nbsp; &lt;style&gt;<br />
+&nbsp; &nbsp; * {<br />
+&nbsp; &nbsp; &nbsp; box-sizing: border-box;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; body {<br />
+&nbsp; &nbsp; &nbsp; margin: 0;<br />
+&nbsp; &nbsp; &nbsp; font-family: Arial, sans-serif;<br />
+&nbsp; &nbsp; &nbsp; background: #f4f6fb;<br />
+&nbsp; &nbsp; &nbsp; color: #222;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .container {<br />
+&nbsp; &nbsp; &nbsp; max-width: 1000px;<br />
+&nbsp; &nbsp; &nbsp; margin: 30px auto;<br />
+&nbsp; &nbsp; &nbsp; padding: 20px;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .card {<br />
+&nbsp; &nbsp; &nbsp; background: white;<br />
+&nbsp; &nbsp; &nbsp; border-radius: 16px;<br />
+&nbsp; &nbsp; &nbsp; padding: 24px;<br />
+&nbsp; &nbsp; &nbsp; box-shadow: 0 10px 25px rgba(0,0,0,0.08);<br />
+&nbsp; &nbsp; &nbsp; margin-bottom: 20px;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; h1, h2 {<br />
+&nbsp; &nbsp; &nbsp; margin-top: 0;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .subtitle {<br />
+&nbsp; &nbsp; &nbsp; color: #666;<br />
+&nbsp; &nbsp; &nbsp; margin-bottom: 20px;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .categories {<br />
+&nbsp; &nbsp; &nbsp; display: grid;<br />
+&nbsp; &nbsp; &nbsp; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));<br />
+&nbsp; &nbsp; &nbsp; gap: 10px;<br />
+&nbsp; &nbsp; &nbsp; margin-bottom: 20px;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; label.check {<br />
+&nbsp; &nbsp; &nbsp; display: flex;<br />
+&nbsp; &nbsp; &nbsp; align-items: center;<br />
+&nbsp; &nbsp; &nbsp; gap: 10px;<br />
+&nbsp; &nbsp; &nbsp; background: #f7f8fc;<br />
+&nbsp; &nbsp; &nbsp; padding: 12px;<br />
+&nbsp; &nbsp; &nbsp; border-radius: 10px;<br />
+&nbsp; &nbsp; &nbsp; cursor: pointer;<br />
+&nbsp; &nbsp; &nbsp; border: 1px solid #e2e6f0;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; button {<br />
+&nbsp; &nbsp; &nbsp; border: none;<br />
+&nbsp; &nbsp; &nbsp; background: #2d6cdf;<br />
+&nbsp; &nbsp; &nbsp; color: white;<br />
+&nbsp; &nbsp; &nbsp; padding: 12px 18px;<br />
+&nbsp; &nbsp; &nbsp; border-radius: 10px;<br />
+&nbsp; &nbsp; &nbsp; font-size: 16px;<br />
+&nbsp; &nbsp; &nbsp; cursor: pointer;<br />
+&nbsp; &nbsp; &nbsp; margin-right: 10px;<br />
+&nbsp; &nbsp; &nbsp; margin-top: 10px;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; button.secondary {<br />
+&nbsp; &nbsp; &nbsp; background: #6b7280;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; button.danger {<br />
+&nbsp; &nbsp; &nbsp; background: #d64545;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; button:disabled {<br />
+&nbsp; &nbsp; &nbsp; opacity: 0.6;<br />
+&nbsp; &nbsp; &nbsp; cursor: not-allowed;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .stats {<br />
+&nbsp; &nbsp; &nbsp; display: flex;<br />
+&nbsp; &nbsp; &nbsp; flex-wrap: wrap;<br />
+&nbsp; &nbsp; &nbsp; gap: 12px;<br />
+&nbsp; &nbsp; &nbsp; margin-bottom: 20px;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .stat {<br />
+&nbsp; &nbsp; &nbsp; background: #eef3ff;<br />
+&nbsp; &nbsp; &nbsp; border-radius: 12px;<br />
+&nbsp; &nbsp; &nbsp; padding: 12px 16px;<br />
+&nbsp; &nbsp; &nbsp; min-width: 150px;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .word-box {<br />
+&nbsp; &nbsp; &nbsp; text-align: center;<br />
+&nbsp; &nbsp; &nbsp; padding: 28px 16px;<br />
+&nbsp; &nbsp; &nbsp; background: #f8faff;<br />
+&nbsp; &nbsp; &nbsp; border-radius: 14px;<br />
+&nbsp; &nbsp; &nbsp; border: 1px solid #dfe7ff;<br />
+&nbsp; &nbsp; &nbsp; margin-bottom: 20px;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .word-main {<br />
+&nbsp; &nbsp; &nbsp; font-size: 40px;<br />
+&nbsp; &nbsp; &nbsp; font-weight: bold;<br />
+&nbsp; &nbsp; &nbsp; letter-spacing: 1px;<br />
+&nbsp; &nbsp; &nbsp; margin-bottom: 10px;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .word-meta {<br />
+&nbsp; &nbsp; &nbsp; color: #666;<br />
+&nbsp; &nbsp; &nbsp; font-size: 15px;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .answers {<br />
+&nbsp; &nbsp; &nbsp; display: grid;<br />
+&nbsp; &nbsp; &nbsp; grid-template-columns: 1fr 1fr;<br />
+&nbsp; &nbsp; &nbsp; gap: 12px;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .answer-btn {<br />
+&nbsp; &nbsp; &nbsp; background: #f5f7fb;<br />
+&nbsp; &nbsp; &nbsp; color: #222;<br />
+&nbsp; &nbsp; &nbsp; border: 2px solid #d9dfeb;<br />
+&nbsp; &nbsp; &nbsp; padding: 16px;<br />
+&nbsp; &nbsp; &nbsp; border-radius: 12px;<br />
+&nbsp; &nbsp; &nbsp; text-align: left;<br />
+&nbsp; &nbsp; &nbsp; font-size: 18px;<br />
+&nbsp; &nbsp; &nbsp; transition: 0.2s;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .answer-btn:hover {<br />
+&nbsp; &nbsp; &nbsp; background: #edf3ff;<br />
+&nbsp; &nbsp; &nbsp; border-color: #2d6cdf;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .answer-btn.correct {<br />
+&nbsp; &nbsp; &nbsp; background: #dff7e7;<br />
+&nbsp; &nbsp; &nbsp; border-color: #2ca24f;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .answer-btn.wrong {<br />
+&nbsp; &nbsp; &nbsp; background: #ffe1e1;<br />
+&nbsp; &nbsp; &nbsp; border-color: #d64545;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .result {<br />
+&nbsp; &nbsp; &nbsp; margin-top: 20px;<br />
+&nbsp; &nbsp; &nbsp; font-size: 18px;<br />
+&nbsp; &nbsp; &nbsp; font-weight: bold;<br />
+&nbsp; &nbsp; &nbsp; min-height: 28px;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .hidden {<br />
+&nbsp; &nbsp; &nbsp; display: none;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .small {<br />
+&nbsp; &nbsp; &nbsp; font-size: 14px;<br />
+&nbsp; &nbsp; &nbsp; color: #666;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .footer-row {<br />
+&nbsp; &nbsp; &nbsp; margin-top: 20px;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; .progress {<br />
+&nbsp; &nbsp; &nbsp; margin-top: 10px;<br />
+&nbsp; &nbsp; &nbsp; color: #444;<br />
+&nbsp; &nbsp; &nbsp; font-size: 15px;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; @media (max-width: 700px) {<br />
+&nbsp; &nbsp; &nbsp; .answers {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; grid-template-columns: 1fr;<br />
+&nbsp; &nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; &nbsp; .word-main {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; font-size: 30px;<br />
+&nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; }<br />
+&nbsp; &lt;/style&gt;<br />
+&lt;/head&gt;<br />
+&lt;body&gt;<br />
+&nbsp; &lt;div class=&quot;container&quot;&gt;<br />
+&nbsp; &nbsp; &lt;div class=&quot;card&quot; id=&quot;setupCard&quot;&gt;<br />
+&nbsp; &nbsp; &nbsp; &lt;h1&gt;Тренажёр ударений&lt;/h1&gt;<br />
+&nbsp; &nbsp; &nbsp; &lt;div class=&quot;subtitle&quot;&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; Выбери разделы, затем нажми &laquo;Начать тренировку&raquo;.<br />
+&nbsp; &nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;h2&gt;Разделы&lt;/h2&gt;<br />
+&nbsp; &nbsp; &nbsp; &lt;div class=&quot;categories&quot; id=&quot;categories&quot;&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class=&quot;footer-row&quot;&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;button id=&quot;selectAllBtn&quot; type=&quot;button&quot;&gt;Выбрать всё&lt;/button&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;button id=&quot;clearAllBtn&quot; class=&quot;secondary&quot; type=&quot;button&quot;&gt;Снять всё&lt;/button&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;button id=&quot;startBtn&quot; type=&quot;button&quot;&gt;Начать тренировку&lt;/button&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;button id=&quot;mistakesBtn&quot; class=&quot;secondary&quot; type=&quot;button&quot;&gt;Повторить ошибки&lt;/button&gt;<br />
+&nbsp; &nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &nbsp; &lt;div class=&quot;small&quot; style=&quot;margin-top: 12px;&quot;&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; Вопрос: показывается слово без ударения, нужно выбрать правильный вариант.<br />
+&nbsp; &nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class=&quot;card hidden&quot; id=&quot;quizCard&quot;&gt;<br />
+&nbsp; &nbsp; &nbsp; &lt;h2&gt;Тренировка&lt;/h2&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class=&quot;stats&quot;&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class=&quot;stat&quot;&gt;&lt;strong&gt;Правильно:&lt;/strong&gt; &lt;span id=&quot;correctCount&quot;&gt;0&lt;/span&gt;&lt;/div&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class=&quot;stat&quot;&gt;&lt;strong&gt;Ошибки:&lt;/strong&gt; &lt;span id=&quot;wrongCount&quot;&gt;0&lt;/span&gt;&lt;/div&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class=&quot;stat&quot;&gt;&lt;strong&gt;Осталось:&lt;/strong&gt; &lt;span id=&quot;remainingCount&quot;&gt;0&lt;/span&gt;&lt;/div&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class=&quot;stat&quot;&gt;&lt;strong&gt;Режим:&lt;/strong&gt; &lt;span id=&quot;modeLabel&quot;&gt;Обычный&lt;/span&gt;&lt;/div&gt;<br />
+&nbsp; &nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class=&quot;word-box&quot;&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class=&quot;word-main&quot; id=&quot;questionWord&quot;&gt;слово&lt;/div&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class=&quot;word-meta&quot; id=&quot;questionMeta&quot;&gt;&lt;/div&gt;<br />
+&nbsp; &nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class=&quot;answers&quot; id=&quot;answers&quot;&gt;&lt;/div&gt;<br />
+&nbsp; &nbsp; &nbsp; &lt;div class=&quot;result&quot; id=&quot;result&quot;&gt;&lt;/div&gt;<br />
+&nbsp; &nbsp; &nbsp; &lt;div class=&quot;progress&quot; id=&quot;progress&quot;&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class=&quot;footer-row&quot;&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;button id=&quot;nextBtn&quot; type=&quot;button&quot; disabled&gt;Следующее&lt;/button&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;button id=&quot;backBtn&quot; class=&quot;secondary&quot; type=&quot;button&quot;&gt;Назад к выбору&lt;/button&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;button id=&quot;restartBtn&quot; class=&quot;secondary&quot; type=&quot;button&quot;&gt;Начать заново&lt;/button&gt;<br />
+&nbsp; &nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &lt;script&gt;<br />
+&nbsp; &nbsp; const DATA = {<br />
+&nbsp; &nbsp; &nbsp; &quot;Имена существительные&quot;: [<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;аэропОрты&quot;, plain: &quot;аэропорты&quot;, note: &quot;им. п. мн. ч. сущ. аэропОрт&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;бАнты&quot;, plain: &quot;банты&quot;, note: &quot;им. п. мн. ч. сущ. бант&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;бОроду&quot;, plain: &quot;бороду&quot;, note: &quot;вин. п. ед. ч. сущ. бородА&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;бухгАлтеров&quot;, plain: &quot;бухгалтеров&quot;, note: &quot;род. п. мн. ч. сущ. бухгАлтер&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;вероисповЕдание&quot;, plain: &quot;вероисповедание&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;водопровОд&quot;, plain: &quot;водопровод&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;газопровОд&quot;, plain: &quot;газопровод&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;граждАнство&quot;, plain: &quot;гражданство&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;дефИс&quot;, plain: &quot;дефис&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;дешевИзна&quot;, plain: &quot;дешевизна&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;диспансЕр&quot;, plain: &quot;диспансер&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;договорЁнность&quot;, plain: &quot;договоренность&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;докумЕнт&quot;, plain: &quot;документ&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;досУг&quot;, plain: &quot;досуг&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;еретИк&quot;, plain: &quot;еретик&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;жалюзИ&quot;, plain: &quot;жалюзи&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;знАчимость&quot;, plain: &quot;значимость&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;Иксы&quot;, plain: &quot;иксы&quot;, note: &quot;им. п. мн. ч. сущ. икс&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;каталОг&quot;, plain: &quot;каталог&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;квартАл&quot;, plain: &quot;квартал&quot;, note: &quot;во всех значениях&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;киломЕтр&quot;, plain: &quot;километр&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;кОнусов&quot;, plain: &quot;конусов&quot;, note: &quot;род. п. мн. ч. сущ. кОнус&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;корЫсть&quot;, plain: &quot;корысть&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;крАны&quot;, plain: &quot;краны&quot;, note: &quot;им. п. мн. ч. сущ. кран&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;кремЕнь&quot;, plain: &quot;кремень&quot;, note: &quot;кремнЯ, род. п. ед. ч.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;лЕкторов&quot;, plain: &quot;лекторов&quot;, note: &quot;род. п. мн. ч. сущ. лЕктор&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;лОктя&quot;, plain: &quot;локтя&quot;, note: &quot;род. п. ед. ч. сущ. лОкоть; локтЕй, род. п. мн. ч.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;лыжнЯ&quot;, plain: &quot;лыжня&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;мЕстностей&quot;, plain: &quot;местностей&quot;, note: &quot;род. п. мн. ч. сущ. мЕстность&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;намЕрение&quot;, plain: &quot;намерение&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;нЕдруг&quot;, plain: &quot;недруг&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;недУг&quot;, plain: &quot;недуг&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;некролОг&quot;, plain: &quot;некролог&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;нЕнависть&quot;, plain: &quot;ненависть&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;нефтепровОд&quot;, plain: &quot;нефтепровод&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;новостЕй&quot;, plain: &quot;новостей&quot;, note: &quot;род. п. мн. ч. сущ. нОвость&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;нОгтя&quot;, plain: &quot;ногтя&quot;, note: &quot;род. п. ед. ч. сущ. нОготь; ногтЕй, род. п. мн. ч.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;Отзыв&quot;, plain: &quot;отзыв&quot;, note: &quot;о книге: отклик, мнение, рецензия&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;отзЫв&quot;, plain: &quot;отзыв&quot;, note: &quot;посла из страны: действие по глаг. отозвАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;Отрочество&quot;, plain: &quot;отрочество&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;партЕр&quot;, plain: &quot;партер&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;портфЕль&quot;, plain: &quot;портфель&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;придАное&quot;, plain: &quot;приданое&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;призЫв&quot;, plain: &quot;призыв&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;свЁкла&quot;, plain: &quot;свекла&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;сирОты&quot;, plain: &quot;сироты&quot;, note: &quot;им. п. мн. ч. сущ. сиротА&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;созЫв&quot;, plain: &quot;созыв&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;сосредотОчение&quot;, plain: &quot;сосредоточение&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;срЕдства&quot;, plain: &quot;средства&quot;, note: &quot;им. п. мн. ч. сущ. срЕдство&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;стАтуя&quot;, plain: &quot;статуя&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;столЯр&quot;, plain: &quot;столяр&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;тамОжня&quot;, plain: &quot;таможня&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;тОрты&quot;, plain: &quot;торты&quot;, note: &quot;им. п. мн. ч. сущ. торт&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;тУфля&quot;, plain: &quot;туфля&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;цемЕнт&quot;, plain: &quot;цемент&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;цЕнтнер&quot;, plain: &quot;центнер&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;цепОчка&quot;, plain: &quot;цепочка&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;шАрфы&quot;, plain: &quot;шарфы&quot;, note: &quot;им. п. мн. ч. сущ. шарф&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;шофЁр&quot;, plain: &quot;шофер&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;экспЕрт&quot;, plain: &quot;эксперт&quot;, note: &quot;&quot; }<br />
+&nbsp; &nbsp; &nbsp; ],</p>
+
+<p>&nbsp; &nbsp; &nbsp; &quot;Имена прилагательные&quot;: [<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;вернА&quot;, plain: &quot;верна&quot;, note: &quot;кр. ф. ж. р. прил. вЕрный&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;знАчимый&quot;, plain: &quot;значимый&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;красИвее&quot;, plain: &quot;красивее&quot;, note: &quot;сравн. ст. прил. красИвый&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;красИвейший&quot;, plain: &quot;красивейший&quot;, note: &quot;превосх. ст.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;кУхонный&quot;, plain: &quot;кухонный&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;ловкА&quot;, plain: &quot;ловка&quot;, note: &quot;кр. ф. ж. р. прил. лОвкий&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;мозаИчный&quot;, plain: &quot;мозаичный&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;оптОвый&quot;, plain: &quot;оптовый&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;прозорлИвый&quot;, plain: &quot;прозорливый&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;прозорлИва&quot;, plain: &quot;прозорлива&quot;, note: &quot;кр. ф. ж. р.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;слИвовый&quot;, plain: &quot;сливовый&quot;, note: &quot;&quot; }<br />
+&nbsp; &nbsp; &nbsp; ],</p>
+
+<p>&nbsp; &nbsp; &nbsp; &quot;Глаголы&quot;: [<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;бралА&quot;, plain: &quot;брала&quot;, note: &quot;прош. вр. ж. р. глаг. брАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;бралАсь&quot;, plain: &quot;бралась&quot;, note: &quot;прош. вр. ж. р. глаг. брАться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;взялА&quot;, plain: &quot;взяла&quot;, note: &quot;прош. вр. ж. р. глаг. взЯть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;взялАсь&quot;, plain: &quot;взялась&quot;, note: &quot;прош. вр. ж. р. глаг. взЯться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;влилАсь&quot;, plain: &quot;влилась&quot;, note: &quot;прош. вр. ж. р. глаг. влИться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;ворвалАсь&quot;, plain: &quot;ворвалась&quot;, note: &quot;прош. вр. ж. р. глаг. ворвАться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;воспринЯть&quot;, plain: &quot;воспринять&quot;, note: &quot;воспринялА, прош. вр. ж. р.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;воссоздалА&quot;, plain: &quot;воссоздала&quot;, note: &quot;прош. вр. ж. р. глаг. воссоздАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;вручИт&quot;, plain: &quot;вручит&quot;, note: &quot;3-е л. ед. ч. глаг. вручИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;гналА&quot;, plain: &quot;гнала&quot;, note: &quot;прош. вр. ж. р. глаг. гнАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;гналАсь&quot;, plain: &quot;гналась&quot;, note: &quot;прош. вр. ж. р. глаг. гнАться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;добралА&quot;, plain: &quot;добрала&quot;, note: &quot;прош. вр. ж. р. глаг. добрАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;добралАсь&quot;, plain: &quot;добралась&quot;, note: &quot;прош. вр. ж. р. глаг. добрАться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;дождалАсь&quot;, plain: &quot;дождалась&quot;, note: &quot;прош. вр. ж. р. глаг. дождАться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;дозвонИтся&quot;, plain: &quot;дозвонится&quot;, note: &quot;3-е л. ед. ч. глаг. дозвонИться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;дозИровать&quot;, plain: &quot;дозировать&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;ждалА&quot;, plain: &quot;ждала&quot;, note: &quot;прош. вр. ж. р. глаг. ждАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;закУпорить&quot;, plain: &quot;закупорить&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;занЯть&quot;, plain: &quot;занять&quot;, note: &quot;зАнял, занялА, зАняли, прош. вр.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;заперлА&quot;, plain: &quot;заперла&quot;, note: &quot;прош. вр. ж. р. глаг. заперЕть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;запломбировАть&quot;, plain: &quot;запломбировать&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;защемИт&quot;, plain: &quot;защемит&quot;, note: &quot;3-е л. ед. ч. глаг. защемИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;звалА&quot;, plain: &quot;звала&quot;, note: &quot;прош. вр. ж. р. глаг. звАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;звонИт&quot;, plain: &quot;звонит&quot;, note: &quot;3-е л. ед. ч. глаг. звонИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;кАшлянуть&quot;, plain: &quot;кашлянуть&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;клАла&quot;, plain: &quot;клала&quot;, note: &quot;прош. вр. ж. р. глаг. клАсть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;клЕить&quot;, plain: &quot;клеить&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;крАлась&quot;, plain: &quot;кралась&quot;, note: &quot;прош. вр. ж. р. глаг. крАсться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;кровоточИть&quot;, plain: &quot;кровоточить&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;лгалА&quot;, plain: &quot;лгала&quot;, note: &quot;прош. вр. ж. р. глаг. лгАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;лилА&quot;, plain: &quot;лила&quot;, note: &quot;прош. вр. ж. р. глаг. лИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;лилАсь&quot;, plain: &quot;лилась&quot;, note: &quot;прош. вр. ж. р. глаг. лИться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;наделИт&quot;, plain: &quot;наделит&quot;, note: &quot;3-е л. ед. ч. глаг. наделИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;надорвалАсь&quot;, plain: &quot;надорвалась&quot;, note: &quot;прош. вр. ж. р. глаг. надорвАться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;назвалАсь&quot;, plain: &quot;назвалась&quot;, note: &quot;прош. вр. ж. р. глаг. назвАться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;накренИтся&quot;, plain: &quot;накренится&quot;, note: &quot;3-е л. ед. ч. глаг. накренИться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;налилА&quot;, plain: &quot;налила&quot;, note: &quot;прош. вр. ж. р. глаг. налИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;нарвалА&quot;, plain: &quot;нарвала&quot;, note: &quot;прош. вр. ж. р. глаг. нарвАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;начАть&quot;, plain: &quot;начать&quot;, note: &quot;нАчал, началА, нАчали, прош. вр.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;обзвонИт&quot;, plain: &quot;обзвонит&quot;, note: &quot;3-е л. ед. ч. глаг. обзвонИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;облегчИть&quot;, plain: &quot;облегчить&quot;, note: &quot;облегчИт, 3-е л. ед. ч.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;облилАсь&quot;, plain: &quot;облилась&quot;, note: &quot;прош. вр. ж. р. глаг. облИться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;обнялАсь&quot;, plain: &quot;обнялась&quot;, note: &quot;прош. вр. ж. р. глаг. обнЯться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;обогналА&quot;, plain: &quot;обогнала&quot;, note: &quot;прош. вр. ж. р. глаг. обогнАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;ободралА&quot;, plain: &quot;ободрала&quot;, note: &quot;прош. вр. ж. р. глаг. ободрАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;ободрИть&quot;, plain: &quot;ободрить&quot;, note: &quot;ободрИт, 3-е л. ед. ч.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;ободрИться&quot;, plain: &quot;ободриться&quot;, note: &quot;ободрИтся, 3-е л. ед. ч.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;обострИть&quot;, plain: &quot;обострить&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;одолжИть&quot;, plain: &quot;одолжить&quot;, note: &quot;одолжИт, 3-е л. ед. ч.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;озлОбить&quot;, plain: &quot;озлобить&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;оклЕить&quot;, plain: &quot;оклеить&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;окружИт&quot;, plain: &quot;окружит&quot;, note: &quot;3-е л. ед. ч. глаг. окружИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;опОшлить&quot;, plain: &quot;опошлить&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;освЕдомиться&quot;, plain: &quot;осведомиться&quot;, note: &quot;освЕдомится, 3-е л. ед. ч.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;отбылА&quot;, plain: &quot;отбыла&quot;, note: &quot;прош. вр. ж. р. глаг. отбЫть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;отдалА&quot;, plain: &quot;отдала&quot;, note: &quot;прош. вр. ж. р. глаг. отдАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;откУпорить&quot;, plain: &quot;откупорить&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;отозвалА&quot;, plain: &quot;отозвала&quot;, note: &quot;прош. вр. ж. р. глаг. отозвАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;отозвалАсь&quot;, plain: &quot;отозвалась&quot;, note: &quot;прош. вр. ж. р. глаг. отозвАться&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;перезвонИт&quot;, plain: &quot;перезвонит&quot;, note: &quot;3-е л. ед. ч. глаг. перезвонИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;перелилА&quot;, plain: &quot;перелила&quot;, note: &quot;прош. вр. ж. р. глаг. перелИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;плодоносИть&quot;, plain: &quot;плодоносить&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;пломбировАть&quot;, plain: &quot;пломбировать&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;повторИт&quot;, plain: &quot;повторит&quot;, note: &quot;3-е л. ед. ч. глаг. повторИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;позвалА&quot;, plain: &quot;позвала&quot;, note: &quot;прош. вр. ж. р. глаг. позвАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;позвонИт&quot;, plain: &quot;позвонит&quot;, note: &quot;3-е л. ед. ч. глаг. позвонИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;полилА&quot;, plain: &quot;полила&quot;, note: &quot;прош. вр. ж. р. глаг. полИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;положИть&quot;, plain: &quot;положить&quot;, note: &quot;положИл, прош. вр. м. р.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;понЯть&quot;, plain: &quot;понять&quot;, note: &quot;понялА, прош. вр. ж. р.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;послАла&quot;, plain: &quot;послала&quot;, note: &quot;прош. вр. ж. р. глаг. послАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;прибЫть&quot;, plain: &quot;прибыть&quot;, note: &quot;прИбыл, прибылА, прИбыли, прош. вр.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;принЯть&quot;, plain: &quot;принять&quot;, note: &quot;прИнял, принялА, прИняли, прош. вр.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;рвалА&quot;, plain: &quot;рвала&quot;, note: &quot;прош. вр. ж. р. глаг. рвАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;сверлИт&quot;, plain: &quot;сверлит&quot;, note: &quot;3-е л. ед. ч. глаг. сверлИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;снялА&quot;, plain: &quot;сняла&quot;, note: &quot;прош. вр. ж. р. глаг. снЯть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;создалА&quot;, plain: &quot;создала&quot;, note: &quot;прош. вр. ж. р. глаг. создАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;сорвалА&quot;, plain: &quot;сорвала&quot;, note: &quot;прош. вр. ж. р. глаг. сорвАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;убралА&quot;, plain: &quot;убрала&quot;, note: &quot;прош. вр. ж. р. глаг. убрАть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;углубИть&quot;, plain: &quot;углубить&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;укрепИт&quot;, plain: &quot;укрепит&quot;, note: &quot;3-е л. ед. ч. глаг. укрепИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;чЕрпать&quot;, plain: &quot;черпать&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;щемИт&quot;, plain: &quot;щемит&quot;, note: &quot;3-е л. ед. ч. глаг. щемИть&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;щЁлкать&quot;, plain: &quot;щелкать&quot;, note: &quot;&quot; }<br />
+&nbsp; &nbsp; &nbsp; ],</p>
+
+<p>&nbsp; &nbsp; &nbsp; &quot;Причастия и отглагольные прилагательные&quot;: [<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;довезЁнный&quot;, plain: &quot;довезенный&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;зАгнутый&quot;, plain: &quot;загнутый&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;зАнятый&quot;, plain: &quot;занятый&quot;, note: &quot;занятА, кр. ф. ж. р.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;зАпертый&quot;, plain: &quot;запертый&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;заселЁнный&quot;, plain: &quot;заселенный&quot;, note: &quot;заселенА, кр. ф. ж. р.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;кровоточАщий&quot;, plain: &quot;кровоточащий&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;нажИвший&quot;, plain: &quot;наживший&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;налИвший&quot;, plain: &quot;наливший&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;нанЯвшийся&quot;, plain: &quot;нанявшийся&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;начАвший&quot;, plain: &quot;начавший&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;нАчатый&quot;, plain: &quot;начатый&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;низведЁнный&quot;, plain: &quot;низведенный&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;облегчЁнный&quot;, plain: &quot;облегченный&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;ободрЁнный&quot;, plain: &quot;ободренный&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;обострЁнный&quot;, plain: &quot;обостренный&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;отключЁнный&quot;, plain: &quot;отключенный&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;повторЁнный&quot;, plain: &quot;повторенный&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;поделЁнный&quot;, plain: &quot;поделенный&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;понЯвший&quot;, plain: &quot;понявший&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;прИнятый&quot;, plain: &quot;принятый&quot;, note: &quot;принятА, кр. ф. ж. р.&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;приручЁнный&quot;, plain: &quot;прирученный&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;прожИвший&quot;, plain: &quot;проживший&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;снятА&quot;, plain: &quot;снята&quot;, note: &quot;кр. ф. ж. р. прич. снЯтый&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;сОгнутый&quot;, plain: &quot;согнутый&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;углублЁнный&quot;, plain: &quot;углубленный&quot;, note: &quot;&quot; }<br />
+&nbsp; &nbsp; &nbsp; ],</p>
+
+<p>&nbsp; &nbsp; &nbsp; &quot;Деепричастия&quot;: [<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;закУпорив&quot;, plain: &quot;закупорив&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;начАв&quot;, plain: &quot;начав&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;начАвшись&quot;, plain: &quot;начавшись&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;отдАв&quot;, plain: &quot;отдав&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;понЯв&quot;, plain: &quot;поняв&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;прибЫв&quot;, plain: &quot;прибыв&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;создАв&quot;, plain: &quot;создав&quot;, note: &quot;&quot; }<br />
+&nbsp; &nbsp; &nbsp; ],</p>
+
+<p>&nbsp; &nbsp; &nbsp; &quot;Наречия&quot;: [<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;вОвремя&quot;, plain: &quot;вовремя&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;дОверху&quot;, plain: &quot;доверху&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;дОнизу&quot;, plain: &quot;донизу&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;дОсуха&quot;, plain: &quot;досуха&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;зАсветло&quot;, plain: &quot;засветло&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;красИвее&quot;, plain: &quot;красивее&quot;, note: &quot;сравн. ст. нар. красИво&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;надОлго&quot;, plain: &quot;надолго&quot;, note: &quot;&quot; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; { word: &quot;ненадОлго&quot;, plain: &quot;ненадолго&quot;, note: &quot;&quot; }<br />
+&nbsp; &nbsp; &nbsp; ]<br />
+&nbsp; &nbsp; };</p>
+
+<p>&nbsp; &nbsp; const categoriesContainer = document.getElementById(&quot;categories&quot;);<br />
+&nbsp; &nbsp; const startBtn = document.getElementById(&quot;startBtn&quot;);<br />
+&nbsp; &nbsp; const mistakesBtn = document.getElementById(&quot;mistakesBtn&quot;);<br />
+&nbsp; &nbsp; const selectAllBtn = document.getElementById(&quot;selectAllBtn&quot;);<br />
+&nbsp; &nbsp; const clearAllBtn = document.getElementById(&quot;clearAllBtn&quot;);</p>
+
+<p>&nbsp; &nbsp; const setupCard = document.getElementById(&quot;setupCard&quot;);<br />
+&nbsp; &nbsp; const quizCard = document.getElementById(&quot;quizCard&quot;);</p>
+
+<p>&nbsp; &nbsp; const questionWord = document.getElementById(&quot;questionWord&quot;);<br />
+&nbsp; &nbsp; const questionMeta = document.getElementById(&quot;questionMeta&quot;);<br />
+&nbsp; &nbsp; const answersEl = document.getElementById(&quot;answers&quot;);<br />
+&nbsp; &nbsp; const resultEl = document.getElementById(&quot;result&quot;);<br />
+&nbsp; &nbsp; const nextBtn = document.getElementById(&quot;nextBtn&quot;);<br />
+&nbsp; &nbsp; const backBtn = document.getElementById(&quot;backBtn&quot;);<br />
+&nbsp; &nbsp; const restartBtn = document.getElementById(&quot;restartBtn&quot;);</p>
+
+<p>&nbsp; &nbsp; const correctCountEl = document.getElementById(&quot;correctCount&quot;);<br />
+&nbsp; &nbsp; const wrongCountEl = document.getElementById(&quot;wrongCount&quot;);<br />
+&nbsp; &nbsp; const remainingCountEl = document.getElementById(&quot;remainingCount&quot;);<br />
+&nbsp; &nbsp; const modeLabel = document.getElementById(&quot;modeLabel&quot;);<br />
+&nbsp; &nbsp; const progressEl = document.getElementById(&quot;progress&quot;);</p>
+
+<p>&nbsp; &nbsp; let currentPool = [];<br />
+&nbsp; &nbsp; let currentIndex = 0;<br />
+&nbsp; &nbsp; let currentQuestion = null;<br />
+&nbsp; &nbsp; let correctCount = 0;<br />
+&nbsp; &nbsp; let wrongCount = 0;<br />
+&nbsp; &nbsp; let mistakes = [];<br />
+&nbsp; &nbsp; let currentMode = &quot;normal&quot;;<br />
+&nbsp; &nbsp; let answered = false;</p>
+
+<p>&nbsp; &nbsp; function shuffle(arr) {<br />
+&nbsp; &nbsp; &nbsp; const copy = [...arr];<br />
+&nbsp; &nbsp; &nbsp; for (let i = copy.length - 1; i &gt; 0; i--) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; const j = Math.floor(Math.random() * (i + 1));<br />
+&nbsp; &nbsp; &nbsp; &nbsp; [copy[i], copy[j]] = [copy[j], copy[i]];<br />
+&nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; return copy;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; function getSelectedCategories() {<br />
+&nbsp; &nbsp; &nbsp; const checks = document.querySelectorAll(&quot;.category-check&quot;);<br />
+&nbsp; &nbsp; &nbsp; return [...checks].filter(c =&gt; c.checked).map(c =&gt; c.value);<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; function buildCategories() {<br />
+&nbsp; &nbsp; &nbsp; Object.keys(DATA).forEach(category =&gt; {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; const id = &quot;cat_&quot; + category.replace(/\s+/g, &quot;_&quot;);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; const label = document.createElement(&quot;label&quot;);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; label.className = &quot;check&quot;;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; label.innerHTML = `<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;checkbox&quot; class=&quot;category-check&quot; id=&quot;${id}&quot; value=&quot;${category}&quot;&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;span&gt;${category} (${DATA[category].length})&lt;/span&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; `;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; categoriesContainer.appendChild(label);<br />
+&nbsp; &nbsp; &nbsp; });<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; function generateWrongVariant(correctWord, plainWord) {<br />
+&nbsp; &nbsp; &nbsp; const pool = [];<br />
+&nbsp; &nbsp; &nbsp; Object.values(DATA).flat().forEach(item =&gt; {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; if (item.plain.toLowerCase() === plainWord.toLowerCase() &amp;&amp; item.word !== correctWord) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pool.push(item.word);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; });</p>
+
+<p>&nbsp; &nbsp; &nbsp; if (pool.length &gt; 0) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; return pool[Math.floor(Math.random() * pool.length)];<br />
+&nbsp; &nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; &nbsp; const vowels = &quot;аеёиоуыэюяАЕЁИОУЫЭЮЯ&quot;;<br />
+&nbsp; &nbsp; &nbsp; const positions = [];<br />
+&nbsp; &nbsp; &nbsp; for (let i = 0; i &lt; plainWord.length; i++) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; if (vowels.includes(plainWord[i])) positions.push(i);<br />
+&nbsp; &nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; &nbsp; if (positions.length &lt;= 1) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; return correctWord;<br />
+&nbsp; &nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; &nbsp; const stressedIndex = [...correctWord].findIndex(ch =&gt; ch === ch.toUpperCase() &amp;&amp; vowels.includes(ch));<br />
+&nbsp; &nbsp; &nbsp; const lower = plainWord.toLowerCase();<br />
+&nbsp; &nbsp; &nbsp; const variants = [];</p>
+
+<p>&nbsp; &nbsp; &nbsp; for (const pos of positions) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; const chars = lower.split(&quot;&quot;);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; chars[pos] = chars[pos].toUpperCase();<br />
+&nbsp; &nbsp; &nbsp; &nbsp; const candidate = chars.join(&quot;&quot;);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; if (candidate !== correctWord) variants.push(candidate);<br />
+&nbsp; &nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; &nbsp; if (variants.length) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; return variants[Math.floor(Math.random() * variants.length)];<br />
+&nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; return correctWord;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; function makeOptions(question) {<br />
+&nbsp; &nbsp; &nbsp; const options = new Set();<br />
+&nbsp; &nbsp; &nbsp; options.add(question.word);</p>
+
+<p>&nbsp; &nbsp; &nbsp; while (options.size &lt; 4) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; let variant = generateWrongVariant(question.word, question.plain);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; if (variant === question.word) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const allWords = Object.values(DATA).flat().map(x =&gt; x.word);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; variant = allWords[Math.floor(Math.random() * allWords.length)];<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; options.add(variant);<br />
+&nbsp; &nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; &nbsp; return shuffle([...options]);<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; function updateStats() {<br />
+&nbsp; &nbsp; &nbsp; correctCountEl.textContent = correctCount;<br />
+&nbsp; &nbsp; &nbsp; wrongCountEl.textContent = wrongCount;<br />
+&nbsp; &nbsp; &nbsp; remainingCountEl.textContent = Math.max(0, currentPool.length - currentIndex);<br />
+&nbsp; &nbsp; &nbsp; modeLabel.textContent = currentMode === &quot;mistakes&quot; ? &quot;Повтор ошибок&quot; : &quot;Обычный&quot;;<br />
+&nbsp; &nbsp; &nbsp; progressEl.textContent = currentPool.length<br />
+&nbsp; &nbsp; &nbsp; &nbsp; ? `Слово ${Math.min(currentIndex + 1, currentPool.length)} из ${currentPool.length}`<br />
+&nbsp; &nbsp; &nbsp; &nbsp; : &quot;&quot;;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; function showQuestion() {<br />
+&nbsp; &nbsp; &nbsp; if (currentIndex &gt;= currentPool.length) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; questionWord.textContent = &quot;Тренировка завершена&quot;;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; questionMeta.textContent = &quot;&quot;;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; answersEl.innerHTML = &quot;&quot;;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; resultEl.textContent = `Итог: правильно ${correctCount}, ошибок ${wrongCount}.`;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; nextBtn.disabled = true;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; updateStats();<br />
+&nbsp; &nbsp; &nbsp; &nbsp; return;<br />
+&nbsp; &nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; &nbsp; answered = false;<br />
+&nbsp; &nbsp; &nbsp; nextBtn.disabled = true;<br />
+&nbsp; &nbsp; &nbsp; resultEl.textContent = &quot;&quot;;</p>
+
+<p>&nbsp; &nbsp; &nbsp; currentQuestion = currentPool[currentIndex];<br />
+&nbsp; &nbsp; &nbsp; questionWord.textContent = currentQuestion.plain;<br />
+&nbsp; &nbsp; &nbsp; questionMeta.textContent = currentQuestion.note || &quot;Выбери правильное ударение&quot;;</p>
+
+<p>&nbsp; &nbsp; &nbsp; const options = makeOptions(currentQuestion);<br />
+&nbsp; &nbsp; &nbsp; answersEl.innerHTML = &quot;&quot;;</p>
+
+<p>&nbsp; &nbsp; &nbsp; options.forEach(option =&gt; {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; const btn = document.createElement(&quot;button&quot;);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; btn.className = &quot;answer-btn&quot;;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; btn.textContent = option;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; btn.type = &quot;button&quot;;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; btn.onclick = () =&gt; checkAnswer(btn, option);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; answersEl.appendChild(btn);<br />
+&nbsp; &nbsp; &nbsp; });</p>
+
+<p>&nbsp; &nbsp; &nbsp; updateStats();<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; function checkAnswer(button, selected) {<br />
+&nbsp; &nbsp; &nbsp; if (answered) return;<br />
+&nbsp; &nbsp; &nbsp; answered = true;</p>
+
+<p>&nbsp; &nbsp; &nbsp; const buttons = document.querySelectorAll(&quot;.answer-btn&quot;);<br />
+&nbsp; &nbsp; &nbsp; buttons.forEach(btn =&gt; btn.disabled = true);</p>
+
+<p>&nbsp; &nbsp; &nbsp; const correct = currentQuestion.word;</p>
+
+<p>&nbsp; &nbsp; &nbsp; if (selected === correct) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; button.classList.add(&quot;correct&quot;);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; resultEl.textContent = &quot;Верно!&quot;;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; correctCount++;<br />
+&nbsp; &nbsp; &nbsp; } else {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; button.classList.add(&quot;wrong&quot;);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; wrongCount++;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; resultEl.textContent = `Неверно. Правильно: ${correct}`;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; if (!mistakes.some(m =&gt; m.word === currentQuestion.word &amp;&amp; m.plain === currentQuestion.plain)) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mistakes.push(currentQuestion);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; buttons.forEach(btn =&gt; {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (btn.textContent === correct) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; btn.classList.add(&quot;correct&quot;);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; });<br />
+&nbsp; &nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; &nbsp; nextBtn.disabled = false;<br />
+&nbsp; &nbsp; &nbsp; updateStats();<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; function startQuiz(mode = &quot;normal&quot;) {<br />
+&nbsp; &nbsp; &nbsp; const selectedCategories = getSelectedCategories();</p>
+
+<p>&nbsp; &nbsp; &nbsp; if (mode === &quot;normal&quot; &amp;&amp; selectedCategories.length === 0) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; alert(&quot;Выбери хотя бы один раздел.&quot;);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; return;<br />
+&nbsp; &nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; &nbsp; if (mode === &quot;mistakes&quot;) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; if (mistakes.length === 0) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; alert(&quot;Ошибок пока нет.&quot;);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; currentPool = shuffle([...mistakes]);<br />
+&nbsp; &nbsp; &nbsp; } else {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; let pool = [];<br />
+&nbsp; &nbsp; &nbsp; &nbsp; selectedCategories.forEach(cat =&gt; {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pool = pool.concat(DATA[cat]);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; });<br />
+&nbsp; &nbsp; &nbsp; &nbsp; currentPool = shuffle(pool);<br />
+&nbsp; &nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; &nbsp; currentMode = mode;<br />
+&nbsp; &nbsp; &nbsp; currentIndex = 0;<br />
+&nbsp; &nbsp; &nbsp; correctCount = 0;<br />
+&nbsp; &nbsp; &nbsp; wrongCount = 0;</p>
+
+<p>&nbsp; &nbsp; &nbsp; setupCard.classList.add(&quot;hidden&quot;);<br />
+&nbsp; &nbsp; &nbsp; quizCard.classList.remove(&quot;hidden&quot;);</p>
+
+<p>&nbsp; &nbsp; &nbsp; showQuestion();<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; nextBtn.addEventListener(&quot;click&quot;, () =&gt; {<br />
+&nbsp; &nbsp; &nbsp; currentIndex++;<br />
+&nbsp; &nbsp; &nbsp; showQuestion();<br />
+&nbsp; &nbsp; });</p>
+
+<p>&nbsp; &nbsp; backBtn.addEventListener(&quot;click&quot;, () =&gt; {<br />
+&nbsp; &nbsp; &nbsp; quizCard.classList.add(&quot;hidden&quot;);<br />
+&nbsp; &nbsp; &nbsp; setupCard.classList.remove(&quot;hidden&quot;);<br />
+&nbsp; &nbsp; });</p>
+
+<p>&nbsp; &nbsp; restartBtn.addEventListener(&quot;click&quot;, () =&gt; {<br />
+&nbsp; &nbsp; &nbsp; startQuiz(currentMode);<br />
+&nbsp; &nbsp; });</p>
+
+<p>&nbsp; &nbsp; startBtn.addEventListener(&quot;click&quot;, () =&gt; startQuiz(&quot;normal&quot;));<br />
+&nbsp; &nbsp; mistakesBtn.addEventListener(&quot;click&quot;, () =&gt; startQuiz(&quot;mistakes&quot;));</p>
+
+<p>&nbsp; &nbsp; selectAllBtn.addEventListener(&quot;click&quot;, () =&gt; {<br />
+&nbsp; &nbsp; &nbsp; document.querySelectorAll(&quot;.category-check&quot;).forEach(c =&gt; c.checked = true);<br />
+&nbsp; &nbsp; });</p>
+
+<p>&nbsp; &nbsp; clearAllBtn.addEventListener(&quot;click&quot;, () =&gt; {<br />
+&nbsp; &nbsp; &nbsp; document.querySelectorAll(&quot;.category-check&quot;).forEach(c =&gt; c.checked = false);<br />
+&nbsp; &nbsp; });</p>
+
+<p>&nbsp; &nbsp; buildCategories();<br />
+&nbsp; &lt;/script&gt;<br />
+&lt;/body&gt;<br />
+&lt;/html&gt;</p>
+</body>
+</html>
